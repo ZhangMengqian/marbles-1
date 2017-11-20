@@ -1,0 +1,65 @@
+#panel_benchmark(hidden).panel
+	h1 Create Benchmarks
+	hr
+	
+	.subnav.focused#nav_bench_maker(style="color:red;") Maker
+	.subnav.unfocused#nav_bench_checker Checker
+	hr
+	
+	#benchmark_maker
+			#bench_mak_noti
+			input(type="file" onchange="handleFile(this.files)")#filein4
+			span create by a file
+			
+			hr
+			
+			br
+			input(type="text" name="benchmark_id" placeholder="1945")
+			span.hint &nbsp;&nbsp; Input the benchmark id	
+			br
+			input(type="text" name="ben_id_src" placeholder="Shanghai")
+			span.hint &nbsp;&nbsp; Input id source	
+			br
+			input(type="text" name="ben_name" placeholder="sjtu")
+			span.hint &nbsp;&nbsp; Input your name
+			br
+			input(type="text" name="ben_currency" placeholder="RMB")
+			span.hint &nbsp;&nbsp; Input currency	
+			br
+			input(type="text" name="ben_ref_id" placeholder="54749110")
+			span.hint &nbsp;&nbsp; Input benchmark reference id 
+			br
+			input(type="text" name="ben_ref_id_src" placeholder="sjtu1896")
+			span.hint &nbsp;&nbsp; Input benchmark reference id source	
+			br
+			button(type="button")#submit4
+				span.fa.fa-check &nbsp;&nbsp;
+				span create benchmarks
+		
+			br
+			br
+			br
+			br
+			br
+			hr
+			#bench_history
+				
+	#benchmark_checker(hidden)
+			#bench_validity_notice
+			#bench_check_noti
+			#blank
+				br
+				br
+				br
+				br
+			#bench_check_button(hidden)
+				button(type="button")#bench_accept
+					span.fa.fa-check &nbsp;&nbsp;
+					span Accept
+				br
+				br
+				button(type="button")#bench_decline
+					span.fa.fa-check &nbsp;&nbsp;
+					span Decline 
+			
+			

@@ -1,0 +1,75 @@
+#panel_acBenchmark(hidden).panel
+			h1 Create New Account Benchmark
+			hr
+			
+			.subnav.focused#nav_acbench_maker(style="color:red;") Maker
+			.subnav.unfocused#nav_acbench_checker Checker
+			hr
+			
+			#acbench_maker
+				#acbench_mak_noti
+				input(type="file" onchange="handleFile(this.files)")#filein3
+				span create by a file
+				
+				hr
+				
+				br
+				input(type="text" name="ben_ac_id" placeholder="0001")
+				span.hint &nbsp;&nbsp; Input the account id	
+				br
+				input(type="text" name="aben_id" placeholder="0002")
+				span.hint &nbsp;&nbsp; Input the benchmark id	
+				br
+				input(type="text" name="aben_source" placeholder="Wuhan")
+				span.hint &nbsp;&nbsp; Input your source
+				br
+				input(type="text" name="aben_name" placeholder="Sherlock Holmes")
+				span.hint &nbsp;&nbsp; Input your name	
+				br
+				input(type="text" name="aben_currency" placeholder="RMB")
+				span.hint &nbsp;&nbsp; Input currency
+				br
+				input(type="text" name="aben_pri_flag" placeholder="1")
+				span.hint &nbsp;&nbsp; Input primary flag
+				br
+				input(type="text" name="aben_startdate" placeholder="2001_10_12")
+				span.hint &nbsp;&nbsp; Input start date 
+				br
+				input(type="text" name="aben_enddate" placeholder="2002_10_12")
+				span.hint &nbsp;&nbsp; Input end date 
+				br
+				input(type="text" name="aben_ref_id" placeholder="54749110")
+				span.hint &nbsp;&nbsp; Input benchmark reference id 
+				br
+				input(type="text" name="aben_ref_id_src" placeholder="sjtu1896")
+				span.hint &nbsp;&nbsp; Input benchmark reference id source
+				br
+				button(type="button")#submit3
+					span.fa.fa-check &nbsp;&nbsp;
+					span create account benchmark
+		
+				br
+				br
+				br
+				br
+				br
+				hr
+				#acbench_history
+		
+			#acbench_checker(hidden)
+				#acben_validity_notice
+				#acbench_check_noti
+				#blank
+					br
+					br
+					br
+					br
+				#acbench_check_button(hidden)
+					button(type="button")#acbench_accept
+						span.fa.fa-check &nbsp;&nbsp;
+						span Accept
+					br
+					br
+					button(type="button")#acbench_decline
+						span.fa.fa-check &nbsp;&nbsp;
+						span Decline 

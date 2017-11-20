@@ -1,0 +1,68 @@
+#panel_acTradeSetup(hidden).panel
+			h1 Create Account Trade Setup
+			hr
+			
+			.subnav.focused#nav_actrade_maker(style="color:red;") Maker
+			.subnav.unfocused#nav_actrade_checker Checker
+			hr
+			
+			#actrade_maker
+				#actrade_mak_noti
+				input(type="file" onchange="handleFile(this.files)")#filein2
+				span create by a file
+				
+				hr
+				br
+				input(type="text" name="t_ac_id" placeholder="0001")
+				span.hint &nbsp;&nbsp; Input the account id	
+				br
+				input(type="text" name="lvts" placeholder="1")
+				span.hint &nbsp;&nbsp; Input your lvts	
+				br
+				input(type="text" name="calypso" placeholder="1")
+				span.hint &nbsp;&nbsp; Input your calypso
+				br
+				input(type="text" name="aladdin" placeholder="1")
+				span.hint &nbsp;&nbsp; Input your aladdin	
+				br
+				input(type="text" name="t_start_date" placeholder="2016_10_10")
+				span.hint &nbsp;&nbsp; Input trade start date
+				br
+				input(type="text" name="equity" placeholder="1")
+				span.hint &nbsp;&nbsp; Input equity
+				br
+				input(type="text" name="fixed_income" placeholder="1")
+				span.hint &nbsp;&nbsp; Input fixed income	
+				br
+				button(type="button")#submit2
+					span.fa.fa-check &nbsp;&nbsp;
+					span create trade setup
+				br
+				br
+				br
+				br
+				br
+				hr
+				#actrade_history
+				
+			#actrade_checker(hidden)
+				#actra_validity_notice
+				#actrade_check_notice
+				#blank
+					br
+					br
+					br
+					br
+				#actrade_check_button(hidden)
+					button(type="button")#actrade_accept
+						span.fa.fa-check &nbsp;&nbsp;
+						span Accept
+					br
+					br
+					button(type="button")#actrade_decline
+						span.fa.fa-check &nbsp;&nbsp;
+						span Decline 
+			
+		
+			
+			

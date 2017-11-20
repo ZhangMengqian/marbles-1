@@ -1,39 +1,125 @@
 #createPanel(hidden).panel
 	
-	span.fa.fa-close#closeCreate
-
-	h2 Create Marble
+	h1 Create New Account
 	hr
 	
-	#innerWrap
-		span.createball
-		
-		form(action="/create" method="POST")#createform
-			//legend 
-			//input(type="hidden" name="name" placeholder="Name Your Marble")
-			//span.hint &nbsp;&nbsp;RANDOM OR CUSTOM STRING
+	.subnav.focused#nav_ac_maker(style="color:red;") Maker
+	.subnav.unfocused#nav_ac_checker Checker
+	hr
+	
+	block sub_mainstuff
+		#account_maker
 			
-			//br
-			legend
-				include ./template/color_options.pug
+			input(type="file" onchange="handleFile(this.files)")#filein1
+			span create by a file
+			
+			hr
+			br
+			input(type="text" name="ac_id" placeholder="0001")
+			span.hint &nbsp;&nbsp;Input account id
+			br
+			input(type="text" name="ac_short_name" placeholder="Tom")
+			span.hint &nbsp;&nbsp; Input your account short name
+			br
+			input(type="text" name="status" placeholder="1")
+			span.hint &nbsp;&nbsp; Input the status
+			br
+			input(type="text" name="term_date" placeholder="2017-01-01")
+			span.hint &nbsp;&nbsp; Input your term date
+			br
+			input(type="text" name="inception_date" placeholder="2017-01-01")
+			span.hint &nbsp;&nbsp; Input your inception date	
+			br
+			input(type="text" name="ac_region" placeholder="US")
+			span.hint &nbsp;&nbsp; Input your region
+			br
+			input(type="text" name="ac_sub_region" placeholder="CA")
+			span.hint &nbsp;&nbsp; Input your sub-region
+			br
+			input(type="text" name="cod_country_domicile" placeholder="05")
+			span.hint &nbsp;&nbsp; Input code for your domicile 	
+			br
+			input(type="text" name="liq_method" placeholder="03")
+			span.hint &nbsp;&nbsp; Input your liq method 
+			br
+			input(type="text" name="contract_entity" placeholder="1412")
+			span.hint &nbsp;&nbsp; Input your contracting entity
+			br
+			input(type="text" name="mgn_entity" placeholder="1234")
+			span.hint &nbsp;&nbsp; Input your management entity
+			br
+			input(type="text" name="ac_legal_name" placeholder="TomHuang")
+			span.hint &nbsp;&nbsp; Input your account legal name            	
+			br
+			input(type="text" name="manager_name" placeholder="TomHuang")
+			span.hint &nbsp;&nbsp; Input your manager name   
+			br
+			input(type="text" name="cod_ccy_base" placeholder="123")
+			span.hint &nbsp;&nbsp; Input your code ccy base
+			br
+			input(type="text" name="long_name" placeholder="Holmes.Tom.Huang.Sherlock")
+			span.hint &nbsp;&nbsp; Input your long name 
+			br
+			input(type="text" name="mandate_id" placeholder="54749110")
+			span.hint &nbsp;&nbsp; Input your mandate id
+			br
+			input(type="text" name="client_id" placeholder="12306")
+			span.hint &nbsp;&nbsp; Input your client id
+			br
+			input(type="text" name="custodian_name" placeholder="Arthur Conan Doyle")
+			span.hint &nbsp;&nbsp; Input your custodian name 
+			br
+			input(type="text" name="sub_mandate_id" placeholder="10086")
+			span.hint &nbsp;&nbsp; Input your sub mandate id 	
+			br
+			input(type="text" name="transfer_agent_name" placeholder="Davis")
+			span.hint &nbsp;&nbsp; Input your transfer agent name 
+			br
+			input(type="text" name="trust_bank" placeholder="China Bank")
+			span.hint &nbsp;&nbsp; Input your trust bank
+			br
+			input(type="text" name="re_trust_bank" placeholder="China Bank")
+			span.hint &nbsp;&nbsp; Input your re-trust bank	
+			br
+			input(type="text" name="last_updated_by" placeholder="John Watson")
+			span.hint &nbsp;&nbsp; Input the person who updated it last 
+			br
+			input(type="text" name="last_approved_by" placeholder="Sherlock Holmes")
+			span.hint &nbsp;&nbsp; Input the person who approved it last  
+			br
+			input(type="text" name="last_update_date" placeholder="2017_03_08")
+			span.hint &nbsp;&nbsp; Input the last update date  
+			
+			br
+			button(type="button")#submit
+				span.fa.fa-check &nbsp;&nbsp;
+				span create account 
+			br
+			br
+			br
+			br
+			br
+			hr
+			#ac_history
 				
-			br
-			legend 
-				select(name="size")
-					option(value="35" disabled="disabled") Size
-					option(value="35" selected="selected") Large
-					option(value="16") Small
-			br
-			legend 
-				select(name="user" disabled="disabled")
-					option(value="" disabled="disabled" selected="selected") User
-			input(type="hidden" name="company" value="")
-			input(type="hidden" name="owner_id" value="")
-
-			br
-			br
-			button(type="button")#createMarbleButton
-				span.fa.fa-plus-circle &nbsp;&nbsp;
-				span Create
-			
+		#account_checker(hidden)
+			#ac_data_validity_notice
+			#ac_check_notice
+			#blank
+				br
+				br
+				br
+				br
+			#ac_check_button(hidden)
+				br
+				br
+				br
+				//button(type="button")#ac_accept
+				//	span.fa.fa-check &nbsp;&nbsp;
+				//	span Accept
+				//br
+				//br
+				//button(type="button")#ac_decline
+				//	span.fa.fa-check &nbsp;&nbsp;
+				//	span Decline
 			
