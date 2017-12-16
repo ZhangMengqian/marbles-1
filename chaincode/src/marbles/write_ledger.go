@@ -354,3 +354,166 @@ func disable_owner(stub shim.ChaincodeStubInterface, args []string) pb.Response 
 	fmt.Println("- end disable_owner")
 	return shim.Success(nil)
 }
+
+func (t *SimpleChaincode) create_account(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+	
+	fmt.Println("- start create user")
+	
+
+	var newaccount Account
+	newaccount.Ac_id = args[0]				
+	newaccount.Ac_short_name = args[1]
+	newaccount.Status = args[2]
+	newaccount.Term_date = args[3]
+	newaccount.Inception_date = args[4]
+    newaccount.Ac_region  = args[5]
+	newaccount.Ac_sub_region = args[6]
+	newaccount.Cod_country_domicile = args[7]
+	newaccount.Liq_method  = args[8]
+	newaccount.Contracting_entity = args[9]
+	newaccount.Mgn_entity = args[10]
+    newaccount.Ac_legal_name = args[11]
+	newaccount.Manager_name = args[12]
+	newaccount.Cod_ccy_base = args[13]
+	newaccount.Long_name = args[14]
+	newaccount.Mandate_id = args[15]
+	newaccount.Client_id = args[16]
+	newaccount.Custodian_name = args[17]
+    newaccount.Sub_mandate_id = args[18]
+	newaccount.Transfer_agent_name = args[19]
+	newaccount.Trust_bank = args[20]
+	newaccount.Re_trust_bank = args[21]
+    newaccount.Last_updated_by = args[22]
+	newaccount.Last_approved_by = args[23]
+	newaccount.Last_update_date = args[24]
+	newaccount.Hash = args[25]
+	
+	//build the marble json string manually
+	// str := `{
+	// 	"docType":"marble", 
+	// 	"id": "` + id + `", 
+	// 	"color": "` + color + `", 
+	// 	"size": ` + strconv.Itoa(size) + `, 
+	// 	"owner": {
+	// 		"id": "` + owner_id + `", 
+	// 		"username": "` + owner.Username + `", 
+	// 		"company": "` + owner.Company + `"
+	// 	}
+	// }`
+	// err = stub.PutState(id, []byte(str))                         //store marble with id as key
+	// if err != nil {
+	// 	return shim.Error(err.Error())
+	// }
+
+	// fmt.Println("- end init_marble")
+	// return shim.Success(nil)
+
+	acJson, err := stub.GetState(accountStr)
+	fmt.Println(acJson)
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+	
+	json.Unmarshal(acJson, &tmp_account)
+	str_newac, _ := json.Marshal(newaccount)
+	tmp_account=append(tmp_account, string(str_newac))
+	jsonAsBytes, _ := json.Marshal(tmp_account)
+	err = stub.PutState(accountStr, jsonAsBytes)	
+	
+	fmt.Println("- end create user")
+	return shim.Success(nil)
+}
+
+func (t *SimpleChaincode) ac_trade_setup(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+	
+	fmt.Println("- start create user")
+	
+	var newaccount Ac_trades_setup
+	newaccount.Ac_id = args[0]				
+	newaccount.Lvts = args[1]
+	newaccount.Calypso = args[2]
+	newaccount.Aladdin = args[3]
+	newaccount.Trade_start_date = args[4]
+    newaccount.Equity = args[5]
+	newaccount.Fixed_income = args[6]
+	newaccount.Hash = args[7]
+	
+	acJson, err := stub.GetState(actradeStr)
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+	
+	json.Unmarshal(acJson, &tmp_tradeset)
+	str_newtra, _ := json.Marshal(newaccount)
+	
+	tmp_allacben=append(tmp_allacben, string(str_newtra))
+	jsonAsBytes, _ := json.Marshal(tmp_allacben)
+	err = stub.PutState(actradeStr, jsonAsBytes)	
+	
+	fmt.Println("- end create user")
+	return shim.Success(nil)
+}
+
+func (t *SimpleChaincode) ac_benchmark(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+	
+	fmt.Println("- start create user")
+	
+	
+	var newaccount Ac_benchmark
+	newaccount.Ac_id = args[0]				
+	newaccount.Benchmark_id = args[1]
+	newaccount.Source = args[2]
+	newaccount.Name = args[3]
+	newaccount.Currency = args[4]
+    newaccount.Primary_flag  = args[5]
+	newaccount.Start_date = args[6]
+	newaccount.End_date = args[7]
+	newaccount.Benchmark_reference_id  = args[8]
+	newaccount.Benchmark_reference_id_source = args[9]
+	newaccount.Hash = args[10]
+
+	
+	acJson, err := stub.GetState(acbenchStr)
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+	
+	json.Unmarshal(acJson, &tmp_allacben)
+	str_newacben, _ := json.Marshal(newaccount)
+	
+	tmp_allacben=append(tmp_allacben, string(str_newacben))
+	jsonAsBytes, _ := json.Marshal(tmp_allacben)
+	err = stub.PutState(acbenchStr, jsonAsBytes)	
+	
+	fmt.Println("- end create user")
+	return shim.Success(nil)
+}
+
+func (t *SimpleChaincode) benchmarks(stub shim.ChaincodeStubInterface, args []string)pb.Response {
+	
+	fmt.Println("- start create user")
+	
+	
+	var newaccount Benchmarks
+	newaccount.Benchmark_id = args[0]				
+	newaccount.Id_source = args[1]
+	newaccount.Name = args[2]
+	newaccount.Currency = args[3]
+	newaccount.Benchmark_reference_id = args[4]
+    newaccount.Benchmark_reference_id_source  = args[5]
+	newaccount.Hash = args[6]
+
+	acJson, err := stub.GetState(benchStr)
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+	
+	json.Unmarshal(acJson, &tmp_allbench)
+	str_newbench, _ := json.Marshal(newaccount)
+	tmp_allbench=append(tmp_allbench, string(str_newbench))
+	jsonAsBytes, _ := json.Marshal(tmp_allbench)
+	err = stub.PutState(benchStr, jsonAsBytes)	
+	
+	fmt.Println("- end create user")
+	return shim.Success(nil)
+}
