@@ -361,33 +361,35 @@ func (t *SimpleChaincode) create_account(stub shim.ChaincodeStubInterface, args 
 	
 
 	var newaccount Account
-	newaccount.Ac_id = args[0]				
-	newaccount.Ac_short_name = args[1]
-	newaccount.Status = args[2]
-	newaccount.Term_date = args[3]
-	newaccount.Inception_date = args[4]
-    newaccount.Ac_region  = args[5]
-	newaccount.Ac_sub_region = args[6]
-	newaccount.Cod_country_domicile = args[7]
-	newaccount.Liq_method  = args[8]
-	newaccount.Contracting_entity = args[9]
-	newaccount.Mgn_entity = args[10]
-    newaccount.Ac_legal_name = args[11]
-	newaccount.Manager_name = args[12]
-	newaccount.Cod_ccy_base = args[13]
-	newaccount.Long_name = args[14]
-	newaccount.Mandate_id = args[15]
-	newaccount.Client_id = args[16]
-	newaccount.Custodian_name = args[17]
-    newaccount.Sub_mandate_id = args[18]
-	newaccount.Transfer_agent_name = args[19]
-	newaccount.Trust_bank = args[20]
-	newaccount.Re_trust_bank = args[21]
-    newaccount.Last_updated_by = args[22]
-	newaccount.Last_approved_by = args[23]
-	newaccount.Last_update_date = args[24]
-	newaccount.Hash = args[25]
+	// newaccount.Ac_id = args[0]				
+	// newaccount.Ac_short_name = args[1]
+	// newaccount.Status = args[2]
+	// newaccount.Term_date = args[3]
+	// newaccount.Inception_date = args[4]
+ //    newaccount.Ac_region  = args[5]
+	// newaccount.Ac_sub_region = args[6]
+	// newaccount.Cod_country_domicile = args[7]
+	// newaccount.Liq_method  = args[8]
+	// newaccount.Contracting_entity = args[9]
+	// newaccount.Mgn_entity = args[10]
+ //    newaccount.Ac_legal_name = args[11]
+	// newaccount.Manager_name = args[12]
+	// newaccount.Cod_ccy_base = args[13]
+	// newaccount.Long_name = args[14]
+	// newaccount.Mandate_id = args[15]
+	// newaccount.Client_id = args[16]
+	// newaccount.Custodian_name = args[17]
+ //    newaccount.Sub_mandate_id = args[18]
+	// newaccount.Transfer_agent_name = args[19]
+	// newaccount.Trust_bank = args[20]
+	// newaccount.Re_trust_bank = args[21]
+ //    newaccount.Last_updated_by = args[22]
+	// newaccount.Last_approved_by = args[23]
+	// newaccount.Last_update_date = args[24]
+	// newaccount.Hash = args[25]
 	
+	newaccount.type_= args[0]				
+	newaccount.hash= args[1]
 	//build the marble json string manually
 	// str := `{
 	// 	"docType":"marble", 
@@ -429,15 +431,18 @@ func (t *SimpleChaincode) ac_trade_setup(stub shim.ChaincodeStubInterface, args 
 	fmt.Println("- start create user")
 	
 	var newaccount Ac_trades_setup
-	newaccount.Ac_id = args[0]				
-	newaccount.Lvts = args[1]
-	newaccount.Calypso = args[2]
-	newaccount.Aladdin = args[3]
-	newaccount.Trade_start_date = args[4]
-    newaccount.Equity = args[5]
-	newaccount.Fixed_income = args[6]
-	newaccount.Hash = args[7]
+	// newaccount.Ac_id = args[0]				
+	// newaccount.Lvts = args[1]
+	// newaccount.Calypso = args[2]
+	// newaccount.Aladdin = args[3]
+	// newaccount.Trade_start_date = args[4]
+ //    newaccount.Equity = args[5]
+	// newaccount.Fixed_income = args[6]
+	// newaccount.Hash = args[7]
 	
+	newaccount.type_= args[0]				
+	newaccount.hash= args[1]
+
 	acJson, err := stub.GetState(actradeStr)
 	if err != nil {
 		return shim.Error(err.Error())
@@ -460,19 +465,21 @@ func (t *SimpleChaincode) ac_benchmark(stub shim.ChaincodeStubInterface, args []
 	
 	
 	var newaccount Ac_benchmark
-	newaccount.Ac_id = args[0]				
-	newaccount.Benchmark_id = args[1]
-	newaccount.Source = args[2]
-	newaccount.Name = args[3]
-	newaccount.Currency = args[4]
-    newaccount.Primary_flag  = args[5]
-	newaccount.Start_date = args[6]
-	newaccount.End_date = args[7]
-	newaccount.Benchmark_reference_id  = args[8]
-	newaccount.Benchmark_reference_id_source = args[9]
-	newaccount.Hash = args[10]
+	// newaccount.Ac_id = args[0]				
+	// newaccount.Benchmark_id = args[1]
+	// newaccount.Source = args[2]
+	// newaccount.Name = args[3]
+	// newaccount.Currency = args[4]
+ //    newaccount.Primary_flag  = args[5]
+	// newaccount.Start_date = args[6]
+	// newaccount.End_date = args[7]
+	// newaccount.Benchmark_reference_id  = args[8]
+	// newaccount.Benchmark_reference_id_source = args[9]
+	// newaccount.Hash = args[10]
 
-	
+	newaccount.type_= args[0]				
+	newaccount.hash= args[1]
+
 	acJson, err := stub.GetState(acbenchStr)
 	if err != nil {
 		return shim.Error(err.Error())
@@ -495,13 +502,16 @@ func (t *SimpleChaincode) benchmarks(stub shim.ChaincodeStubInterface, args []st
 	
 	
 	var newaccount Benchmarks
-	newaccount.Benchmark_id = args[0]				
-	newaccount.Id_source = args[1]
-	newaccount.Name = args[2]
-	newaccount.Currency = args[3]
-	newaccount.Benchmark_reference_id = args[4]
-    newaccount.Benchmark_reference_id_source  = args[5]
-	newaccount.Hash = args[6]
+	// newaccount.Benchmark_id = args[0]				
+	// newaccount.Id_source = args[1]
+	// newaccount.Name = args[2]
+	// newaccount.Currency = args[3]
+	// newaccount.Benchmark_reference_id = args[4]
+ //    newaccount.Benchmark_reference_id_source  = args[5]
+	// newaccount.Hash = args[6]
+
+	newaccount.type_= args[0]				
+	newaccount.hash= args[1]
 
 	acJson, err := stub.GetState(benchStr)
 	if err != nil {

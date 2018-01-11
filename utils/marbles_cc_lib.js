@@ -100,6 +100,118 @@ module.exports = function (enrollObj, g_options, fcw, logger) {
 		});
 	};
 
+	marbles_chaincode.create_account = function (options, cb) {
+		console.log('');
+		logger.info('Creating a marble...');
+
+		var opts = {
+			peer_urls: g_options.peer_urls,
+			peer_tls_opts: g_options.peer_tls_opts,
+			channel_id: g_options.channel_id,
+			chaincode_id: g_options.chaincode_id,
+			chaincode_version: g_options.chaincode_version,
+			event_urls: g_options.event_urls,
+			endorsed_hook: options.endorsed_hook,
+			ordered_hook: options.ordered_hook,
+			cc_function: 'create_account',
+			cc_args: [
+				options.args.type_,
+				options.args.hash
+			],
+		};
+		fcw.invoke_chaincode(enrollObj, opts, function (err, resp) {
+			if (cb) {
+				if (!resp) resp = {};
+				resp.id = opts.cc_args[0];			//pass marble id back
+				cb(err, resp);
+			}
+		});
+	};
+
+	marbles_chaincode.create_ac_trade = function (options, cb) {
+		console.log('');
+		logger.info('Creating a marble...');
+
+		var opts = {
+			peer_urls: g_options.peer_urls,
+			peer_tls_opts: g_options.peer_tls_opts,
+			channel_id: g_options.channel_id,
+			chaincode_id: g_options.chaincode_id,
+			chaincode_version: g_options.chaincode_version,
+			event_urls: g_options.event_urls,
+			endorsed_hook: options.endorsed_hook,
+			ordered_hook: options.ordered_hook,
+			cc_function: 'ac_trade_setup',
+			cc_args: [
+				options.args.type_,
+				options.args.hash
+			],
+		};
+		fcw.invoke_chaincode(enrollObj, opts, function (err, resp) {
+			if (cb) {
+				if (!resp) resp = {};
+				resp.id = opts.cc_args[0];			//pass marble id back
+				cb(err, resp);
+			}
+		});
+	};
+
+	marbles_chaincode.create_ac_benchmark = function (options, cb) {
+		console.log('');
+		logger.info('Creating a marble...');
+
+		var opts = {
+			peer_urls: g_options.peer_urls,
+			peer_tls_opts: g_options.peer_tls_opts,
+			channel_id: g_options.channel_id,
+			chaincode_id: g_options.chaincode_id,
+			chaincode_version: g_options.chaincode_version,
+			event_urls: g_options.event_urls,
+			endorsed_hook: options.endorsed_hook,
+			ordered_hook: options.ordered_hook,
+			cc_function: 'ac_benchmark',
+			cc_args: [
+				options.args.type_,
+				options.args.hash
+			],
+		};
+		fcw.invoke_chaincode(enrollObj, opts, function (err, resp) {
+			if (cb) {
+				if (!resp) resp = {};
+				resp.id = opts.cc_args[0];			//pass marble id back
+				cb(err, resp);
+			}
+		});
+	};
+
+	marbles_chaincode.create_benchmark = function (options, cb) {
+		console.log('');
+		logger.info('Creating a marble...');
+
+		var opts = {
+			peer_urls: g_options.peer_urls,
+			peer_tls_opts: g_options.peer_tls_opts,
+			channel_id: g_options.channel_id,
+			chaincode_id: g_options.chaincode_id,
+			chaincode_version: g_options.chaincode_version,
+			event_urls: g_options.event_urls,
+			endorsed_hook: options.endorsed_hook,
+			ordered_hook: options.ordered_hook,
+			cc_function: 'benchmarks',
+			cc_args: [
+				options.args.type_,
+				options.args.hash
+			],
+		};
+		fcw.invoke_chaincode(enrollObj, opts, function (err, resp) {
+			if (cb) {
+				if (!resp) resp = {};
+				resp.id = opts.cc_args[0];			//pass marble id back
+				cb(err, resp);
+			}
+		});
+	};
+
 	//get list of marbles
 	marbles_chaincode.get_marble_list = function (options, cb) {
 		console.log('');

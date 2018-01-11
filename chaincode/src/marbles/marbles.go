@@ -73,63 +73,71 @@ var store_bench = "_storeBenchStr"				//name for the key/value that will store a
 var allStr="_allStr"    // name for all the key/value pair to store in the blockchain, after chekcer accepted 
 
 type Account struct{
-	Ac_id string `json:"ac_id"`				
-	Ac_short_name string `json:"ac_short_name"`
-	Status string `json:"status"`
-	Term_date string `json:"term_date"`
-	Inception_date string `json:"inception_date"`
-	Ac_region string `json:"ac_region"`
-	Ac_sub_region string `json:"ac_sub_region"`
-	Cod_country_domicile string `json:"cod_country_domicile"`
-	Liq_method string `json:"liq_method"`
-	Contracting_entity string `json:"contracting_entity"`
-	Mgn_entity string `json:"mgn_entity"`
-    Ac_legal_name string `json:"ac_legal_name"`
-	Manager_name string `json:"manager_name"`
-	Cod_ccy_base string `json:"cod_ccy_base"`
-	Long_name string `json:"long_name"`
-	Mandate_id string `json:"mandate_id"`
-	Client_id string `json:"client_id"`
-	Custodian_name string `json:"custodian_name"`
-    Sub_mandate_id string `json:"sub_mandate_id"`
-	Transfer_agent_name string `json:"transfer_agent_name"`
-	Trust_bank string `json:"trust_bank"`
-	Re_trust_bank string `json:"re_trust_bank"`
-    Last_updated_by string `json:"last_updated_by"`
-	Last_approved_by string `json:"last_approved_by"`
-	Last_update_date string `json:"last_update_date"`
+	// Ac_id string `json:"ac_id"`				
+	// Ac_short_name string `json:"ac_short_name"`
+	// Status string `json:"status"`
+	// Term_date string `json:"term_date"`
+	// Inception_date string `json:"inception_date"`
+	// Ac_region string `json:"ac_region"`
+	// Ac_sub_region string `json:"ac_sub_region"`
+	// Cod_country_domicile string `json:"cod_country_domicile"`
+	// Liq_method string `json:"liq_method"`
+	// Contracting_entity string `json:"contracting_entity"`
+	// Mgn_entity string `json:"mgn_entity"`
+ //    Ac_legal_name string `json:"ac_legal_name"`
+	// Manager_name string `json:"manager_name"`
+	// Cod_ccy_base string `json:"cod_ccy_base"`
+	// Long_name string `json:"long_name"`
+	// Mandate_id string `json:"mandate_id"`
+	// Client_id string `json:"client_id"`
+	// Custodian_name string `json:"custodian_name"`
+ //    Sub_mandate_id string `json:"sub_mandate_id"`
+	// Transfer_agent_name string `json:"transfer_agent_name"`
+	// Trust_bank string `json:"trust_bank"`
+	// Re_trust_bank string `json:"re_trust_bank"`
+ //    Last_updated_by string `json:"last_updated_by"`
+	// Last_approved_by string `json:"last_approved_by"`
+	// Last_update_date string `json:"last_update_date"`
+	type_ string `json:"type_"`				
+	hash string `json:"hash"`
 }
 
 type Ac_trades_setup struct{
-	Ac_id string `json:"ac_id"`					
-	Lvts string `json:"lvts"`
-	Calypso string `json:"calypso"`
-	Aladdin string `json:"aladdin"`
-	Trade_start_date string `json:"trade_start_date"`
-    Equity string `json:"equity"`
-	Fixed_income string `json:"fixed_income"`
+	// Ac_id string `json:"ac_id"`					
+	// Lvts string `json:"lvts"`
+	// Calypso string `json:"calypso"`
+	// Aladdin string `json:"aladdin"`
+	// Trade_start_date string `json:"trade_start_date"`
+ //    Equity string `json:"equity"`
+	// Fixed_income string `json:"fixed_income"`
+	type_ string `json:"type_"`				
+	hash string `json:"hash"`
 }
 
 type Ac_benchmark struct{
-	Ac_id string `json:"ac_id"`					
-	Benchmark_id string `json:"benchmark_id"`
-	Source string `json:"source"`
-	Name string `json:"name"`
-	Currency string `json:"currency"`
-    Primary_flag string `json:"primary_flag"`
-	Start_date string `json:"start_date"`
-	End_date string `json:"end_date"`
-    Benchmark_reference_id string `json:"benchmark_reference_id"`
-	Benchmark_reference_id_source string `json:"benchmark_reference_id_source"`
+	// Ac_id string `json:"ac_id"`					
+	// Benchmark_id string `json:"benchmark_id"`
+	// Source string `json:"source"`
+	// Name string `json:"name"`
+	// Currency string `json:"currency"`
+ //    Primary_flag string `json:"primary_flag"`
+	// Start_date string `json:"start_date"`
+	// End_date string `json:"end_date"`
+ //    Benchmark_reference_id string `json:"benchmark_reference_id"`
+	// Benchmark_reference_id_source string `json:"benchmark_reference_id_source"`
+	type_ string `json:"type_"`				
+	hash string `json:"hash"`
 }
 
 type Benchmarks struct{
-	Benchmark_id string `json:"benchmark_id"`					
-	Id_source string `json:"id_source"`
-	Name string `json:"name"`
-	Currency string `json:"currency"`
-    Benchmark_reference_id string `json:"benchmark_reference_id"`
-	Benchmark_reference_id_source string `json:"benchmark_reference_id_source"`
+	// Benchmark_id string `json:"benchmark_id"`					
+	// Id_source string `json:"id_source"`
+	// Name string `json:"name"`
+	// Currency string `json:"currency"`
+ //    Benchmark_reference_id string `json:"benchmark_reference_id"`
+	// Benchmark_reference_id_source string `json:"benchmark_reference_id_source"`
+	type_ string `json:"type_"`				
+	hash string `json:"hash"`
 }
 
 

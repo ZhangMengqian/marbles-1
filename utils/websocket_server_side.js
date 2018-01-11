@@ -13,7 +13,22 @@ module.exports = function (g_options, fcw, logger) {
 	var known_height = 0;
 	var checkPeriodically = null;
 	var enrollInterval = null;
+	var async = require('async');
 
+	var async2 = require('async');
+	var mysql = require('mysql');
+	var http = require('http');
+	var sqlite3 = require('sqlite3').verbose();
+	var db = new sqlite3.Database('database', function(err){
+    console.log('--------------------------CONNECT INFORMATION-------------------------------------');
+    if(err){
+        console.error("database connection failed:" + err.stack);
+        return;
+    }
+    console.log("database connection success!!!");
+    console.log('---------------------------------------------------------------------------------\n\n');
+	});
+	var jsSHA=require('jssha');
 	//--------------------------------------------------------
 	// Setup WS Module
 	//--------------------------------------------------------
@@ -129,6 +144,187 @@ module.exports = function (g_options, fcw, logger) {
 				});
 			}
 		}
+
+		// create new account 
+		if(data.type == 'create_account'){
+        	console.log('----------------------------------Create Account!--------------------------------------');
+        	var value=data.ac_id+data.ac_short_name+data.ac_status+data.term_date+data.inception_date+data.ac_region+data.ac_sub_region+data.cod_country_domicile+data.liq_method+data.contracting_entity+data.mgn_entity+data.ac_legal_name+data.manager_name+data.cod_ccy_base+data.long_name+data.mandate_id+data.client_id+data.custodian_name+data.sub_mandate_id+data.transfer_agent_name+data.trust_bank+data.re_trust_bank+data.last_updated_by+data.last_approved_by+data.last_update_date;
+        	console.log("------FROM PAGE----"+value);
+       		var sha=new jsSHA("SHA-256","TEXT");
+        	sha.update(value);
+        	var sha_value=sha.getHash("HEX");
+        	console.log("SHA-VALUE: " + sha_value);
+        	options.args = {
+					type_: 'account',
+					hash: sha_value
+			};
+        	db.serialize(function () {
+            	//  Database#run(sql, [param, ...], [callback])
+
+            	db.run('INSERT INTO account(sha_value, ac_id,ac_short_name,status,term_date,inception_date,ac_region,' +
+                	'ac_sub_region,cod_country_domicile,liq_method,contracting_entity,mgn_entity,ac_legal_name,manager_name,' +
+                	'cod_ccy_base,longname,mandate_id,client_id,custodian_name,sub_mandate_id,transfer_agent_name,trust_bank,' +
+                	're_trust_bank,last_updated_by,last_approved_by,last_update_date) ' +
+                	'VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
+                	[sha_value, data.ac_id, data.ac_short_name, data.ac_status, data.term_date,
+                    	data.inception_date, data.ac_region, data.ac_sub_region, data.cod_country_domicile, data.liq_method,
+                    	data.contracting_entity, data.mgn_entity, data.ac_legal_name, data.manager_name, data.cod_ccy_base,
+                    	data.long_name, data.mandate_id, data.client_id, data.custodian_name, data.sub_mandate_id,
+                    	data.transfer_agent_name, data.trust_bank, data.re_trust_bank, data.last_updated_by,
+                    	data.last_approved_by, data.last_update_date],
+
+                	function(err){
+                    	if(err){
+                        	console.log('--------------------------FAIL INSERT Account----------------------------');
+                        	console.log('[INSERT ERROR] - ',err.stack);
+                        	console.log('--------------------------------------------------------------------\n\n');
+                    	}else{
+                        	console.log('--------------------------SUCCESS INSERT Account----------------------------');
+                        	console.log('Last Inserted Row ID: ' + this.lastID);
+                        	console.log('Number of Rows Affected: ' + this.changes);
+                        	marbles_lib.create_account(options, function (err, resp) {
+								if (err != null) send_err(err, resp);
+								else options.ws.send(JSON.stringify({ msg: 'history', data: resp }));
+							});
+                        	// chaincode.invoke.create_account([data.ac_id, data.ac_short_name, data.ac_status, data.term_date,
+                         //   		data.inception_date, data.ac_region, data.ac_sub_region, data.cod_country_domicile, data.liq_method,
+                         //    	data.contracting_entity, data.mgn_entity, data.ac_legal_name, data.manager_name, data.cod_ccy_base,
+                         //    	data.long_name, data.mandate_id, data.client_id, data.custodian_name, data.sub_mandate_id,
+                         //    	data.transfer_agent_name, data.trust_bank, data.re_trust_bank, data.last_updated_by,
+                         //    	data.last_approved_by, data.last_update_date, sha_value], cb_invoked);
+                        	console.log('--------------------------------------------------------------------\n\n');
+                    	}
+                	});
+        	});
+    	}
+
+    	// create new ac_trade
+    	else if(data.type == 'ac_trade_setup'){
+       		console.log('----------------------------------Create ac_trade!--------------------------------------');
+        	var value=data.ac_id+data.lvts+data.calypso+data.aladdin+data.trade_start_date+data.equity+data.fixed_income;
+       		console.log("------FROM PAGE----"+value);
+        	var sha=new jsSHA("SHA-256","TEXT");
+        	sha.update(value);
+        	var sha_value=sha.getHash("HEX");
+        	console.log("SHA-VALUE: " + sha_value);
+
+        	options.args = {
+					type_: 'ac_trade',
+					hash: sha_value
+			};
+
+        	db.serialize(function () {
+            	//  Database#run(sql, [param, ...], [callback])
+            	db.run('INSERT INTO ac_trade(sha_value,ac_id,lvts,calypso,aladdin,trade_start_date,equity,fixed_income) ' +
+					'VALUES(?,?,?,?,?,?,?,?)',[ sha_value, data.ac_id, data.lvts, data.calypso,
+                    data.aladdin, data.trade_start_date, data.equity, data.fixed_income],
+
+                	function(err){
+                    	if(err){
+                        	console.log('--------------------------FAIL INSERT Account----------------------------');
+                        	console.log('[INSERT ERROR] - ',err.stack);
+                        	console.log('--------------------------------------------------------------------\n\n');
+                    	}else{
+                        	console.log('--------------------------SUCCESS INSERT Account----------------------------');
+                        	console.log('Last Inserted Row ID: ' + this.lastID);
+                        	console.log('Number of Rows Affected: ' + this.changes);
+                        	marbles_lib.create_ac_trade(options, function (err, resp) {
+								if (err != null) send_err(err, resp);
+								else options.ws.send(JSON.stringify({ msg: 'history', data: resp }));
+							});
+                        	// chaincode.invoke.ac_trade_setup([ data.ac_id, data.lvts, data.calypso,
+                         //    	data.aladdin, data.trade_start_date, data.equity, data.fixed_income, sha_value], cb_invoked);
+                        	console.log('--------------------------------------------------------------------\n\n');
+                   		}
+                	});
+        	});
+    	}
+
+    	// crteate new ac_benchmark
+    	else if(data.type == 'ac_benchmark'){
+        	console.log('----------------------------------Create ac_benchmark!--------------------------------------');
+        	var value=data.ac_id+data.benchmark_id+data.source+data.name+data.currency+data.primary_flag+data.start_date+data.end_date+data.benchmark_reference_id+data.benchmark_reference_id_source;
+        	console.log("------FROM PAGE----"+value);
+        	var sha=new jsSHA("SHA-256","TEXT");
+        	sha.update(value);
+        	var sha_value=sha.getHash("HEX");
+        	console.log("SHA-VALUE: " + sha_value);
+
+        	options.args = {
+					type_: 'ac_benchmark',
+					hash: sha_value
+			};
+
+        	db.serialize(function () {
+            	//  Database#run(sql, [param, ...], [callback])
+            	db.run('INSERT INTO ac_benchmark( sha_value,ac_id,benchmark_id,source,name,currency,primary_flag,' +
+                	'start_date,end_date,benchmark_reference_id,benchmark_reference_id_source) VALUES(?,?,?,?,?,?,?,?,?,?,?)',
+                	[sha_value, data.ac_id, data.benchmark_id, data.source, data.name,
+                    	data.currency, data.primary_flag, data.start_date, data.end_date, data.benchmark_reference_id,
+                    	data.benchmark_reference_id_source],
+                	function(err){
+                    	if(err){
+                        	console.log('--------------------------FAIL INSERT Account----------------------------');
+                        	console.log('[INSERT ERROR] - ',err.stack);
+                        	console.log('--------------------------------------------------------------------\n\n');
+                    	}else{
+                       		console.log('--------------------------SUCCESS INSERT Account----------------------------');
+                        	console.log('Last Inserted Row ID: ' + this.lastID);
+                        	console.log('Number of Rows Affected: ' + this.changes);
+                        	marbles_lib.create_ac_benchmark(options, function (err, resp) {
+								if (err != null) send_err(err, resp);
+								else options.ws.send(JSON.stringify({ msg: 'history', data: resp }));
+							});
+                        	// chaincode.invoke.ac_benchmark([data.ac_id, data.benchmark_id, data.source, data.name,
+                         //    	data.currency, data.primary_flag, data.start_date, data.end_date, data.benchmark_reference_id,
+                         //    	data.benchmark_reference_id_source, sha_value], cb_invoked);
+                        	console.log('--------------------------------------------------------------------\n\n');
+                    	}
+                	});
+        	});
+    	}
+
+    	//create new benchmarkss
+    	else if(data.type == 'benchmarks'){
+        	console.log('----------------------------------Create benchmarks!--------------------------------------');
+        	var value=data.benchmark_id+data.id_source+data.name+data.currency+data.benchmark_reference_id+data.benchmark_reference_id_source;
+        	console.log("------FROM PAGE-------");
+        	var sha=new jsSHA("SHA-256","TEXT");
+        	sha.update(value);
+        	var sha_value=sha.getHash("HEX");
+        	console.log("SHA-VALUE: " + sha_value);
+
+        	options.args = {
+					type_: 'benchmark',
+					hash: sha_value
+			};
+
+        	db.serialize(function () {
+            	//  Database#run(sql, [param, ...], [callback])
+            	db.run('INSERT INTO benchmarks(sha_value,benchmark_id,id_source,name,currency,benchmark_reference_id,' +
+                	'benchmark_reference_id_source) VALUES(?,?,?,?,?,?,?)',
+                	[ sha_value, data.benchmark_id, data.id_source, data.name, data.currency,
+                    	data.benchmark_reference_id, data.benchmark_reference_id_source],
+                	function(err){
+                    	if(err){
+                        	console.log('--------------------------FAIL INSERT Account----------------------------');
+                        	console.log('[INSERT ERROR] - ',err.stack);
+                        	console.log('--------------------------------------------------------------------\n\n');
+                    	}else{
+                        	console.log('--------------------------SUCCESS INSERT Account----------------------------');
+                        	console.log('Last Inserted Row ID: ' + this.lastID);
+                        	console.log('Number of Rows Affected: ' + this.changes);
+                        	marbles_lib.create_benchmark(options, function (err, resp) {
+								if (err != null) send_err(err, resp);
+								else options.ws.send(JSON.stringify({ msg: 'history', data: resp }));
+							});
+                        	// chaincode.invoke.benchmarks([data.benchmark_id, data.id_source, data.name, data.currency,
+                         //    	data.benchmark_reference_id, data.benchmark_reference_id_source, sha_value], cb_invoked);
+                        	console.log('--------------------------------------------------------------------\n\n');
+                    	}
+                	});
+        	});
+   		}
 
 		// send transaction error msg 
 		function send_err(msg, input) {
