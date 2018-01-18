@@ -15,19 +15,19 @@ block custom_header
 		
 block navpanel
 	// --------------- Navigation Bar  -------------- //
-	include ./template/nav.pug
-	
+	//include ./template/nav.pug
+	include ./template/nav_part1.pug
 	
 block content
 	// --------------- Main Stuff  -------------- //
-	#notificationsWrap
-		#noticeScrollWrap
-			#emptyNotifications.hint No Notifications
-		#notificationHandle 
-			span.fa.fa-angle-down
+	//#notificationsWrap
+		//#noticeScrollWrap
+			//#emptyNotifications.hint No Notifications
+		//#notificationHandle 
+			//span.fa.fa-angle-down
 
-	#auditButton 
-		span.fa.fa-search
+	//#auditButton 
+		//span.fa.fa-search
 			
 	#contentPanel
 		
@@ -47,16 +47,16 @@ block content
 		include ./panel_benchmark.pug
 		
 		// --------------- Start Up Walk Through Panel
-		include ./panel_startup.pug
+		//include ./panel_startup.pug
 
 		// --------------- Walk Transaction Panel
-		include ./panel_tx_story.pug
+		//include ./panel_tx_story.pug
 
 		// --------------- Settings Panel
-		include ./panel_settings.pug
+		//include ./panel_settings.pug
 
 		// --------------- Disable Owner Panel
-		include ./panel_disable_owner.pug
+		//include ./panel_disable_owner.pug
 		
 block footer
 	include ./template/blockchain.pug

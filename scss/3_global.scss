@@ -29,6 +29,7 @@ $auditSize: 333px;
 	background: $acc_color3;
 	font-size: 15px;
 	color: $acc_color1-5;
+	display:inline-block;
 }
 
 #mainPanel{
@@ -145,7 +146,39 @@ $auditSize: 333px;
 	font-size: 11px;
 }
 
+.nav {
+	color:$acc_color1;
+	padding: 0px 30px;
+	display:inline-block;
+}
+.nav:hover{
+	text-decoration: underline;
+	cursor: pointer;
+}
+.selectedNav{
+	color: $main_color;
+}
+#linkWraps{
+	text-align:center;
+	width:100%;
+	position: absolute;
+	top:0;
+	left:0;
+	z-index: 2;
+	display:inline-table;
 
+}
+
+#link2{
+	text-align:center;
+	width:100%;
+	position: absolute;
+	top:0;
+	left:0;
+	z-index: 2;
+	display:inline-table;
+
+}
 // --------- Home ---------
 .marblesWrap{
 	display: inline-block;
