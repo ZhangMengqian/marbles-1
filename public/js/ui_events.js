@@ -374,7 +374,7 @@ $(document).on('ready', function () {
 		    $('#bench_check_noti').append(tmp_bench);
 			$('#bench_history').append(tmp_bench);
 			$('#bench_mak_noti').empty();
-		
+		}
 		return false;
 	});
 
@@ -438,13 +438,35 @@ $(document).on('ready', function () {
 	String.prototype.trim=function(){
 		return this.replace(/(^\s*)|(\s*$)/g, "");
 	}
-						
+	
+	function showHomePanel(){
+		$('#homePanel').fadeIn(300);
+		$('#createPanel').hide();
+		$('#panel_acBenchmark').hide();
+		$('#panel_acTradeSetup').hide();
+		$('#panel_benchmark').hide();
+		$('#panel_viewer').hide();
+		var part = window.location.pathname.substring(0,3);
+		window.history.pushState({},'', part + '/home');						//put it in url so we can f5
+		console.log('getting new users');
+		// setTimeout(function(){
+		// 	//$('#user1wrap').html('');											//reset the panel
+		// 	ws.send(JSON.stringify({type: 'get', v: 1}));						//need to wait a bit
+		// 	ws.send(JSON.stringify({type: 'chainstats', v: 1}));
+		// }, 1000);
+	}				
 	$('#homeLink').click(function(){
-		showHomePanel();
+		$('#homePanel').fadeIn(300);
+		$('#createPanel').hide();
+		$('#panel_acBenchmark').hide();
+		$('#panel_acTradeSetup').hide();
+		$('#panel_benchmark').hide();
+		$('#panel_viewer').hide();
 	});
 
 	$('#createLink').click(function(){
 	$('#homePanel').hide();
+		$('#homePanel').hide();
 		$('#createPanel').fadeIn(300);
 		$('#panel_acBenchmark').hide();
 		$('#panel_acTradeSetup').hide();
