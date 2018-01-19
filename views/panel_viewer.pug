@@ -1,0 +1,190 @@
+#panel_viewer(hidden).panel
+			h1 View Data
+			hr
+			#viewer
+			br
+			legend
+				select(name="data type")
+					option(value="account") Account
+					option(value="ac_trade") Ac_Trade
+					option(value="ac_benchmark") Ac_benchmark
+					option(value="benchmarks") Benchmarks
+			#accountselect(hidden)
+				br
+				input(type="checkbox" name="hash1")
+				| hash value
+				br
+				input(type="checkbox" name="ac_id0")
+				| account id
+				br
+				input(type="checkbox" name="ac_short_name0")
+				| account short name
+				br
+				input(type="checkbox" name="status0")
+				| status
+				br
+				input(type="checkbox" name="term_date0")
+				| term date
+				br
+				input(type="checkbox" name="inception_date0")
+				| inception date	
+				br
+				input(type="checkbox" name="ac_region0")
+				| region
+				br
+				input(type="checkbox" name="ac_sub_region0")
+				| sub-region
+				br
+				input(type="checkbox" name="cod_country_domicile0")
+				| domicile 	
+				br
+				input(type="checkbox" name="liq_method0")
+				| liq method 
+				br
+				input(type="checkbox" name="contract_entity0")
+				| contracting entity
+				br
+				input(type="checkbox" name="mgn_entity0" )
+				| management entity
+				br
+				input(type="checkbox" name="ac_legal_name0")
+				| account legal name            	
+				br
+				input(type="checkbox" name="manager_name0")
+				| manager name   
+				br
+				input(type="checkbox" name="cod_ccy_base0")
+				| code ccy base
+				br
+				input(type="checkbox" name="long_name0")
+				| long name 
+				br
+				input(type="checkbox" name="mandate_id0")
+				| mandate id
+				br
+				input(type="checkbox" name="client_id0")
+				| client id
+				br
+				input(type="checkbox" name="custodian_name0")
+				| custodian name 
+				br
+				input(type="checkbox" name="manager_name0")
+				| manager name
+				br
+				input(type="checkbox" name="sub_mandate_id0")
+				| sub mandate id 	
+				br
+				input(type="checkbox" name="transfer_agent_name0")
+				| transfer agent name 
+				br
+				input(type="checkbox" name="trust_bank0")
+				| trust bank
+				br
+				input(type="checkbox" name="re_trust_bank0")
+				| re-trust bank	
+				br
+				input(type="checkbox" name="last_updated_by0")
+				| person who updated it last 
+				br
+				input(type="checkbox" name="last_approved_by0")
+				| person who approved it last  
+				br
+				input(type="checkbox" name="last_update_date0")
+				| last update date  
+			#actradeselect(hidden)
+				br
+				input(type="checkbox" name="hash2")
+				| hash value
+				br
+				input(type="checkbox" name="t_ac_id0")
+				| account id	
+				br
+				input(type="checkbox" name="lvts0")
+				| lvts	
+				br
+				input(type="checkbox" name="calypso0")
+				| calypso
+				br
+				input(type="checkbox" name="aladdin0")
+				| aladdin	
+				br
+				input(type="checkbox" name="t_start_date0")
+				| trade start date
+				br
+				input(type="checkbox" name="equity0")
+				| equity
+				br
+				input(type="checkbox" name="fixed_income0")
+				| fixed income	
+				br
+			#acbenchmarkselect(hidden)
+				br
+				input(type="checkbox" name="hash3")
+				| hash value
+				br
+				input(type="checkbox" name="ben_ac_id0")
+				| account id	
+				br
+				input(type="checkbox" name="aben_id0")
+				| benchmark id	
+				br
+				input(type="checkbox" name="aben_source0")
+				| source
+				br
+				input(type="checkbox" name="aben_name0")
+				| name	
+				br
+				input(type="checkbox" name="aben_currency0")
+				| currency
+				br
+				input(type="checkbox" name="aben_pri_flag0")
+				| primary flag
+				br
+				input(type="checkbox" name="aben_startdate0")
+				| start date 
+				br
+				input(type="checkbox" name="aben_enddate0")
+				| end date 
+				br
+				input(type="checkbox" name="aben_ref_id0")
+				| benchmark reference id 
+				br
+				input(type="checkbox" name="aben_ref_id_src0")
+				| benchmark reference id source
+				br
+			#benchmarkselect(hidden)
+				br
+				input(type="checkbox" name="hash4")
+				| hash value
+				br
+				input(type="checkbox" name="benchmark_id0")
+				| benchmark id
+				br
+				input(type="checkbox" name="ben_id_src0")
+				| id source
+				br
+				input(type="checkbox" name="ben_name0")
+				| name
+				br
+				input(type="checkbox" name="ben_currency0")
+				| currency
+				br
+				input(type="checkbox" name="ben_ref_id0")
+				| benchmark reference id
+				br
+				input(type="checkbox" name="ben_ref_id_src0")
+				| benchmark reference id source
+			#viewer_button1
+				hr
+				button(type="button")#submit7
+					span select specific attributes
+			#viewer_button2(hidden)
+				hr
+				button(type="button")#submit5
+					span view data
+			#viewer_button3(hidden)
+				hr
+				button(type="button")#submit6
+					span cls
+			hr
+			#data_history
