@@ -355,7 +355,7 @@ func disable_owner(stub shim.ChaincodeStubInterface, args []string) pb.Response 
 	return shim.Success(nil)
 }
 
-func (t *SimpleChaincode) create_account(stub shim.ChaincodeStubInterface, args []string) pb.Response {
+func create_account(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	
 	fmt.Println("- start create user")
 	
