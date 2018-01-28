@@ -127,8 +127,8 @@ func init_marble(stub shim.ChaincodeStubInterface, args []string) (pb.Response) 
 	var err error
 	fmt.Println("starting init_marble")
 
-	if len(args) != 5 {
-		return shim.Error("Incorrect number of arguments. Expecting 5")
+	if len(args) != 3 {
+		return shim.Error("Incorrect number of arguments. Expecting 3")
 	}
 
 	//input sanitation
